@@ -47,6 +47,10 @@ if (!existsSync(DATA_FILE)) {
   writeData(initData());
 }
 
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 app.get('/api/fixed-extensions', (req, res) => {
   const data = readData();
   res.json(data.fixedExtensions.sort((a, b) => a.extension.localeCompare(b.extension)));
@@ -129,6 +133,6 @@ app.get('/api/blocked-extensions', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
 
